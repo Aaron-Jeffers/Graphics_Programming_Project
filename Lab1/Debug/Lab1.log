@@ -1,0 +1,23 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Audio.cpp
+  Display.cpp
+  main.cpp
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.h(60,16): warning C4305: 'initializing': truncation from 'double' to 'float'
+  MainGame.cpp
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.h(60,16): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(18,9): warning C4930: 'Shader rimShader(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(19,9): warning C4930: 'Shader geoShader(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(17,9): warning C4930: 'Shader toonShader(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(15,9): warning C4930: 'Shader shader(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(16,9): warning C4930: 'Shader fogShader(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\MainGame.cpp(20,9): warning C4930: 'Shader eMapping(void)': prototyped function not called (was a variable definition intended?)
+  Mesh.cpp
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\Mesh.cpp(62,9): warning C4930: 'Sphere meshSphere(void)': prototyped function not called (was a variable definition intended?)
+  obj_loader.cpp
+C:\Users\Aaron\Desktop\Graphics_Programming_Project\Lab1\obj_loader.cpp(378,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Shader.cpp
+  SkyBox.cpp
+  Texture.cpp
+  Generating Code...
+  stb_image.c
+  Lab1.vcxproj -> C:\Users\Aaron\Desktop\Graphics_Programming_Project\Debug\Lab1.exe
