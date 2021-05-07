@@ -38,7 +38,7 @@ void MainGame::initSystems()
 	//backGroundMusic = audioDevice.loadSound("..\\res\\background.wav");
 	
 	mesh1.loadModel("..\\res\\sphereSmooth.obj");
-	mesh2.loadModel("..\\res\\torus2.obj");
+	mesh2.loadModel("..\\res\\torusSmooth.obj");
 	mesh3.loadModel("..\\res\\monkey3.obj");
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); //new shader
@@ -206,14 +206,14 @@ void MainGame::linkGeo()
 	geoShader.setFloat("time", counter * 2);
 }
 
-void MainGame::linkRimLighting()
+void MainGame::linkRimLighting(Transform t)
 {
 	glm::vec3 camDir;
 	camDir = mesh2.getSpherePos() - myCamera.getPos();
 	camDir = glm::normalize(camDir);
 	rimShader.setMat4("u_pm", myCamera.getProjection());
 	rimShader.setMat4("u_vm", myCamera.getView());
-	rimShader.setMat4("model", transform.GetModel());
+	rimShader.setMat4("model", t.GetModel());
 	rimShader.setMat4("view", myCamera.getView());
 	rimShader.setVec3("lightDir", glm::vec3(0.5f, 0.5f, 0.5f));
 }

@@ -27,7 +27,7 @@ private:
 	void drawGame();
 	void linkFogShader();
 	void linkToon();
-	void linkRimLighting();
+	void linkRimLighting(Transform t);
 	void linkGeo();
 	void linkEmapping(Transform t);
 	void linkGooch(Transform t);
