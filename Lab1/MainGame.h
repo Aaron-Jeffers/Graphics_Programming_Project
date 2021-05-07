@@ -53,6 +53,7 @@ private:
 	//Textures
 	string bricks = "..\\res\\bricks.jpg";
 	string water = "..\\res\\water.jpg";
+	string badCompanySmileyITriedToMakeInPaint = "..\\res\\BadCompanySmiley.jpg";
 
 	bool KEYS[322];
 	float counter;

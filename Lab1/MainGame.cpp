@@ -149,7 +149,7 @@ void MainGame::linkToon()
 
 void MainGame::linkGeo()
 {
-	geoShader.setFloat("time", counter * 2);
+	geoShader.setFloat("time", counter/2);
 }
 
 void MainGame::linkRimLighting(Transform transform, Mesh mesh)
@@ -185,9 +185,9 @@ void MainGame::drawGame()
 {
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 0.0f); //Clears display
 
-	Texture texture(bricks); //load texture 
+	Texture texture(badCompanySmileyITriedToMakeInPaint); //load texture 
 
-	geoTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	geoTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, -90.0 * deg2rad, 0.0), glm::vec3(2, 2, 2));
 	geoShader.Bind();
 	linkGeo();
 	geoShader.Update(geoTransform, myCamera);

@@ -4,6 +4,7 @@ Camera controls:
 
 [Pitch/Yaw] IJKL  
 
+******IMPORTANT******* -> Pressing anything other than the controls listed above may cause a break point. I didn't have enough time to work out the kinks of the input system sorry.
 
 Performance:
 
