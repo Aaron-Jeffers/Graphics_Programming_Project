@@ -7,7 +7,4 @@ C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Progr
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(15,9): warning C4930: 'Shader shader(void)': prototyped function not called (was a variable definition intended?)
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(16,9): warning C4930: 'Shader fogShader(void)': prototyped function not called (was a variable definition intended?)
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(20,9): warning C4930: 'Shader eMapping(void)': prototyped function not called (was a variable definition intended?)
-  main.cpp
-C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.h(53,16): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
   Lab1.vcxproj -> C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Debug\Lab1.exe

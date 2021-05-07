@@ -36,7 +36,7 @@ void MainGame::initSystems()
 	
 	geometryMesh.loadModel(sphereSmooth);
 	environmentMesh.loadModel(sphereSmooth);
-	goochMesh.loadModel(sphereSmooth);
+	goochMesh.loadModel(torusSmooth);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -179,8 +179,9 @@ void MainGame::linkEmapping(Transform transform)
 void MainGame::linkGooch(Transform transform)
 {
 	goochShader.setMat4("modelToCamera", transform.GetModel());
-	goochShader.setMat4("modelToScreen", myCamera.getViewProjection());
+	goochShader.setMat4("modelToScreen", myCamera.getProjection());
 	goochShader.setMat3("normalToCamera", glm::mat3((inverse(transform.GetModel()))));
+	goochShader.setMat4("view", myCamera.getView());
 	goochShader.setVec3("vColor", glm::vec3(1.0, 1.0, 1.0));
 }
 
@@ -196,11 +197,11 @@ void MainGame::drawGame()
 	geoTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
 	geoTransform.SetScale(glm::vec3(2, 2, 2));
 	
-	eTransform.SetPos(glm::vec3(10.0, 0.0, 0.0));
+	eTransform.SetPos(glm::vec3(0.0, 0.0, 0.0));
 	eTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
 	eTransform.SetScale(glm::vec3(2, 2, 2));
 
-	goochTransform.SetPos(glm::vec3(0.0, 0.0, 0.0));
+	goochTransform.SetPos(glm::vec3(10.0, 0.0, 0.0));
 	goochTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
 	goochTransform.SetScale(glm::vec3(2, 2, 2));
 
