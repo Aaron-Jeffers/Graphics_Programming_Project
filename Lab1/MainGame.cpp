@@ -4,10 +4,6 @@
 #include <string>
 #include <windows.h>
 
-
-Transform geoTransform, eTransform, goochTransform;
-bool KEYS[322];
-
 MainGame::MainGame()
 {
 	_gameState = GameState::PLAY;
@@ -34,9 +30,9 @@ void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
 	
-	geometryMesh.loadModel(sphereSmooth);
-	environmentMesh.loadModel(sphereSmooth);
-	goochMesh.loadModel(torusSmooth);
+	geometryMesh.loadModel(sphere);
+	environmentMesh.loadModel(sphere);
+	goochMesh.loadModel(torus);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -187,57 +183,33 @@ void MainGame::linkGooch(Transform transform)
 
 void MainGame::drawGame()
 {
-	_gameDisplay.clearDisplay(0.8f, 0.8f, 0.8f, 1.0f); //sets our background colour
+	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 0.0f); //Clears display
 
 	Texture texture("..\\res\\bricks.jpg"); //load texture
 	Texture texture1("..\\res\\water.jpg"); //load texture 
 	Texture texture2("..\\res\\water.jpg"); //load texture 
 
-	geoTransform.SetPos(glm::vec3(-10.0, 0.0, 0.0));
-	geoTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
-	geoTransform.SetScale(glm::vec3(2, 2, 2));
-	
-	eTransform.SetPos(glm::vec3(0.0, 0.0, 0.0));
-	eTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
-	eTransform.SetScale(glm::vec3(2, 2, 2));
-
-	goochTransform.SetPos(glm::vec3(10.0, 0.0, 0.0));
-	goochTransform.SetRot(glm::vec3(0.0, 0.0, 0.0));
-	goochTransform.SetScale(glm::vec3(2, 2, 2));
-
+	geoTransform.SetTransform(glm::vec3(-10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	geoShader.Bind();
 	linkGeo();
 	geoShader.Update(geoTransform, myCamera);
 	geometryMesh.draw();
-	geometryMesh.updateSphereData(*geoTransform.GetPos(), 0.62f);
 
+	eTransform.SetTransform(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	eMapping.Bind();
 	linkEmapping(eTransform);
 	eMapping.Update(eTransform, myCamera);
 	environmentMesh.draw();
-	environmentMesh.updateSphereData(*eTransform.GetPos(), 0.62f);
 
+	goochTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	goochShader.Bind();
 	linkGooch(goochTransform);
 	goochShader.Update(goochTransform, myCamera);
 	goochMesh.draw();
-	goochMesh.updateSphereData(*goochTransform.GetPos(), 0.62f);
-
-	/*shader.Bind();
-	shader.Update(transform2, myCamera);
-	mesh3.draw();
-	mesh3.updateSphereData(*transform2.GetPos(), 0.62f);*/	
-
-	//glActiveTexture(GL_TEXTURE2);
-	////glBindTexture(GL_TEXTURE_CUBE_MAP, skybox.textureID);
-	//glBindTexture(GL_TEXTURE_CUBE_MAP_EXT, skybox.textureID);
 
 	counter = counter + 0.02f;
 
 	skybox.draw(&myCamera);	
-	
-	glEnableClientState(GL_COLOR_ARRAY); 
-	glEnd();
 
 	_gameDisplay.swapBuffer();	
 } 

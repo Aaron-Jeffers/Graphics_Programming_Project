@@ -34,6 +34,7 @@ private:
 
 	Display _gameDisplay;
 	GameState _gameState;
+	Transform geoTransform, eTransform, goochTransform;
 	Mesh geometryMesh, environmentMesh, goochMesh;
 	Shader shader, fogShader, toonShader, rimShader, geoShader, shaderSkybox, eMapping, goochShader;
 	Skybox skybox;
@@ -47,6 +48,7 @@ private:
 	string torusSmooth = "..\\res\\torusSmooth.obj";
 	string torusSuperSmooth = "..\\res\\torusSuperSmooth.obj";
 
+	bool KEYS[322];
 	float counter;
 	float camMoveVel = 0.2f;
 	float camRotVel = 0.04f;

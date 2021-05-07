@@ -41,6 +41,12 @@ public:
 	inline void SetPos(glm::vec3& pos) { this->pos = pos; } // setters
 	inline void SetRot(glm::vec3& rot) { this->rot = rot; }
 	inline void SetScale(glm::vec3& scale) { this->scale = scale; }
+	inline void SetTransform(glm::vec3& pos, glm::vec3& rot, glm::vec3& scale) 
+	{
+		this->pos = pos;
+		this->rot = rot;
+		this->scale = scale;
+	}
 protected:
 private:
 	glm::vec3 pos;
