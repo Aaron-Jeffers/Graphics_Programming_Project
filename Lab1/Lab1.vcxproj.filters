@@ -127,6 +127,12 @@
     <None Include="..\res\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\goochShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\goochShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Object Include="..\res\monkey3.obj">

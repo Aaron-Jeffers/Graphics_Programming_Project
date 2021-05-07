@@ -38,13 +38,14 @@ void MainGame::initSystems()
 	//backGroundMusic = audioDevice.loadSound("..\\res\\background.wav");
 	
 	mesh1.loadModel("..\\res\\sphereSmooth.obj");
-	mesh2.loadModel("..\\res\\sphereSmooth.obj");
+	mesh2.loadModel("..\\res\\torus2.obj");
 	mesh3.loadModel("..\\res\\monkey3.obj");
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); //new shader
 	toonShader.init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag"); //new shader
 	rimShader.init("..\\res\\shaderRim.vert", "..\\res\\shaderRim.frag");
 	eMapping.init("..\\res\\shaderReflection.vert", "..\\res\\shaderReflection.frag");
+	goochShader.init("..\\res\\goochShader.vert", "..\\res\\goochShader.frag");
 
 	geoShader.initGeo();
 
@@ -225,6 +226,17 @@ void MainGame::linkEmapping(Transform t)
 	eMapping.setVec3("cameraPos", myCamera.getPos());
 }
 
+void MainGame::linkGooch(Transform t)
+{
+	goochShader.setMat4("modelToCamera", t.GetModel());
+	goochShader.setMat4("modelToScreen", myCamera.getViewProjection());
+	goochShader.setMat3("normalToCamera", glm::mat3((inverse(t.GetModel()))));
+	goochShader.setVec3("vColor", glm::vec3(1.0, 1.0, 1.0));
+
+	//goochShader.setVec3("camDir", myCamera.getPos());
+	//goochShader.setVec3("LightPosition", myCamera.getPos());
+}
+
 void MainGame::drawGame()
 {
 	_gameDisplay.clearDisplay(0.8f, 0.8f, 0.8f, 1.0f); //sets our background colour
@@ -250,11 +262,17 @@ void MainGame::drawGame()
 	transform2.SetRot(glm::vec3(0.0, counter * 5, 0.0));
 	transform2.SetScale(glm::vec3(0.15, 0.15, 0.15));  //Figure out scale issue
 
-	eMapping.Bind();
+	/*eMapping.Bind();
 	linkEmapping(transform);
 	eMapping.Update(transform, myCamera);
 	mesh1.draw();
-	mesh1.updateSphereData(*transform.GetPos(), 0.62f);
+	mesh1.updateSphereData(*transform.GetPos(), 0.62f);*/
+
+	goochShader.Bind();
+	linkGooch(transform1);
+	goochShader.Update(transform1, myCamera);
+	mesh2.draw();
+	
 		
 	/*geoShader.Bind();
 	linkGeo();
