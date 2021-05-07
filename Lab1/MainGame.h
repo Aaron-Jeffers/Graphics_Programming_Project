@@ -41,6 +41,7 @@ private:
 	Camera myCamera;
 	vector<std::string> faces;
 
+	//Models
 	string cube = "..\\res\\cube.obj";
 	string sphere = "..\\res\\sphere.obj";
 	string sphereSmooth = "..\\res\\sphereSmooth.obj";
@@ -48,6 +49,10 @@ private:
 	string torus = "..\\res\\torus.obj";
 	string torusSmooth = "..\\res\\torusSmooth.obj";
 	string torusSuperSmooth = "..\\res\\torusSuperSmooth.obj";
+
+	//Textures
+	string bricks = "..\\res\\bricks.jpg";
+	string water = "..\\res\\water.jpg";
 
 	bool KEYS[322];
 	float counter;

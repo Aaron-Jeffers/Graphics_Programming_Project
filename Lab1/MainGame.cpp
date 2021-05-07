@@ -30,7 +30,7 @@ void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
 	
-	geometryMesh.loadModel(sphere);
+	geometryMesh.loadModel(sphereSmooth);
 	environmentMesh.loadModel(sphereSmooth);
 	goochMesh.loadModel(torusSmooth);
 
@@ -185,9 +185,7 @@ void MainGame::drawGame()
 {
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 0.0f); //Clears display
 
-	Texture texture("..\\res\\bricks.jpg"); //load texture
-	Texture texture1("..\\res\\water.jpg"); //load texture 
-	Texture texture2("..\\res\\water.jpg"); //load texture 
+	Texture texture(bricks); //load texture 
 
 	geoTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	geoShader.Bind();
