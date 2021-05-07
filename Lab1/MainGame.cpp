@@ -31,8 +31,8 @@ void MainGame::initSystems()
 	_gameDisplay.initDisplay(); 
 	
 	geometryMesh.loadModel(sphere);
-	environmentMesh.loadModel(sphere);
-	goochMesh.loadModel(torus);
+	environmentMesh.loadModel(sphereSmooth);
+	goochMesh.loadModel(torusSmooth);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -42,7 +42,7 @@ void MainGame::initSystems()
 	goochShader.init("..\\res\\goochShader.vert", "..\\res\\goochShader.frag");
 	geoShader.initGeo();
 	
-	myCamera.initCamera(glm::vec3(0, 0, -10), 90.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
+	myCamera.initCamera(glm::vec3(0, 0, 10), 90.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
 
 	counter = 1.0f;
 
@@ -189,7 +189,7 @@ void MainGame::drawGame()
 	Texture texture1("..\\res\\water.jpg"); //load texture 
 	Texture texture2("..\\res\\water.jpg"); //load texture 
 
-	geoTransform.SetTransform(glm::vec3(-10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	geoTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	geoShader.Bind();
 	linkGeo();
 	geoShader.Update(geoTransform, myCamera);
@@ -201,7 +201,7 @@ void MainGame::drawGame()
 	eMapping.Update(eTransform, myCamera);
 	environmentMesh.draw();
 
-	goochTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	goochTransform.SetTransform(glm::vec3(-10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	goochShader.Bind();
 	linkGooch(goochTransform);
 	goochShader.Update(goochTransform, myCamera);

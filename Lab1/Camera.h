@@ -13,7 +13,7 @@ public:
 	void initCamera(const glm::vec3& pos,float fov, float aspect, float nearClip, float farClip)
 	{
 		this->pos = pos;
-		this->forward = glm::vec3(0.0f, 0.0f, 1.0f);
+		this->forward = glm::vec3(0.0f, 0.0f, -1.0f);
 		this->right = glm::vec3(1.0f, 0.0f, 0.0f);
 		this->up = glm::vec3(0.0f, 1.0f, 0.0f);
 		this->projection = glm::perspective(fov, aspect, nearClip, farClip);

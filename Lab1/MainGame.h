@@ -41,6 +41,7 @@ private:
 	Camera myCamera;
 	vector<std::string> faces;
 
+	string cube = "..\\res\\cube.obj";
 	string sphere = "..\\res\\sphere.obj";
 	string sphereSmooth = "..\\res\\sphereSmooth.obj";
 	string sphereSuperSmooth = "..\\res\\sphereSuperSmooth.obj";
