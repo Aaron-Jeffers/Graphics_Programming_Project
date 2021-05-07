@@ -27,40 +27,29 @@ private:
 	void drawGame();
 	void linkFogShader();
 	void linkToon();
-	void linkRimLighting(Transform t);
+	void linkRimLighting(Transform transform, Mesh mesh);
 	void linkGeo();
-	void linkEmapping(Transform t);
-	void linkGooch(Transform t);
-	bool collision(glm::vec3 m1Pos, float m1Rad, glm::vec3 m2Pos, float m2Rad);
-
-	//void playAudio(unsigned int Source, glm::vec3 pos);
+	void linkEmapping(Transform transform);
+	void linkGooch(Transform transform);
 
 	Display _gameDisplay;
 	GameState _gameState;
-	Mesh mesh1;
-	Mesh mesh2;
-	Mesh mesh3;
-	Camera myCamera;
-	Shader shader;
-	Shader fogShader;
-	Shader toonShader;
-	Shader rimShader;
-	Shader geoShader;
-	Shader shaderSkybox;
-	Shader eMapping;
-	Shader goochShader;
-	
+	Mesh geometryMesh, environmentMesh, goochMesh;
+	Shader shader, fogShader, toonShader, rimShader, geoShader, shaderSkybox, eMapping, goochShader;
 	Skybox skybox;
-
+	Camera myCamera;
 	vector<std::string> faces;
-	
-	//Audio audioDevice;
+
+	string sphere = "..\\res\\sphere.obj";
+	string sphereSmooth = "..\\res\\sphereSmooth.obj";
+	string sphereSuperSmooth = "..\\res\\sphereSuperSmooth.obj";
+	string torus = "..\\res\\torus.obj";
+	string torusSmooth = "..\\res\\torusSmooth.obj";
+	string torusSuperSmooth = "..\\res\\torusSuperSmooth.obj";
 
 	float counter;
 	float camMoveVel = 0.2f;
 	float camRotVel = 0.04f;
 	float deg2rad = 3.14159265358979323846 / 180;
-	unsigned int whistle;
-	unsigned int backGroundMusic;
 };
 

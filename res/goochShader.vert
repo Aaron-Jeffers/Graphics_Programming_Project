@@ -9,9 +9,6 @@ uniform mat3 normalToCamera;
 
 vec3 LightPosition = vec3(0, 10, 4);
 
-//in vec4 vPosition;
-//in vec3 vNormal;
-
 out float NdotL;
 out vec3 ReflectVec;
 out vec3 ViewVec;
@@ -24,5 +21,5 @@ void main()
 	 ReflectVec = normalize(reflect(-lightVec, tnorm));
 	 ViewVec = normalize(-ecPos);
 	 NdotL = (dot(lightVec, tnorm) + 1.0) * 0.5;
-	 gl_Position = modelToScreen * vPosition;
+	 gl_Position = modelToScreen * vPosition;	 
 }
