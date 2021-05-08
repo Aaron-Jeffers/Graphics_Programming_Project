@@ -56,7 +56,7 @@ void main()
 {
 	
 	vec2 coordRatio = gl_FragCoord.xy / resolution.xy * levelOfDetail;
-	vec3 colour;
+	vec3 colour = vec3(0.3,0.3,0.3);
 
 	vec2 g,h;
 
@@ -72,10 +72,13 @@ void main()
 	vec3 grad2 = min(colourGradient2 + gradientIntensity, 1.0);
 
 	//colour = mix(baseColour1, baseColour2, clamp((f*f)*4.0, 0, 1));
-	//colour = mix(colour, grad1, clamp(colDifRatio, 0, 1));
-	//colour = mix(colour, grad2, clamp(colDifRatio, 0, 1));
+	//colour = mix(colour, grad1, clamp(colDifRatio *(f*f)*4.0, 0, 1));
+	//colour = mix(colour, grad2, clamp(colDifRatio *(f*f)*4.0, 0, 1));
 
-	colour = mix(grad1, grad2, clamp((f*f)*4.0 * colDifRatio, 0, 1));
+	colour += mix(grad1, grad2, clamp((f*f)*4.0 * colDifRatio, 0, 1)); //before was just colour = mix() and also vec3 colour was set to anything.
+
+	//colour = mix( colour,mix(grad1, grad2, clamp((f*f)*4.0 * colDifRatio, 0, 1)),1.5f);
+
 
 	gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*colour,1.0);
 }
