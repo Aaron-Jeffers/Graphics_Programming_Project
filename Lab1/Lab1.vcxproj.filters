@@ -127,18 +127,6 @@
     <None Include="..\res\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\res\goochShader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\res\goochShader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\res\fractalShader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\res\fractalShader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\res\combiShader.vert">
       <Filter>Resource Files</Filter>
     </None>

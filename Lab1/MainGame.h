@@ -30,15 +30,13 @@ private:
 	void linkRimLighting(Transform transform, Mesh mesh);
 	void linkGeo();
 	void linkEmapping(Transform transform);
-	void linkGooch(Transform transform);
-	void linkFractal(Transform transform);
 	void linkCombi(Transform transform);
 
 	Display _gameDisplay;
 	GameState _gameState;
-	Transform geoTransform, eTransform, goochTransform, fractalTransform, combiTransform;
-	Mesh geometryMesh, environmentMesh, goochMesh, fractalMesh, combiMesh;
-	Shader shader, fogShader, toonShader, rimShader, geoShader, shaderSkybox, eMapping, goochShader, fractalShader, combiShader;
+	Transform geoTransform, eTransform, combiTransform;
+	Mesh geometryMesh, environmentMesh, combiMesh;
+	Shader shader, fogShader, toonShader, rimShader, geoShader, shaderSkybox, eMapping, combiShader;
 	Skybox skybox;
 	Camera myCamera;
 	vector<std::string> faces;
