@@ -11,19 +11,10 @@ uniform int levelOfDetail;
 
 uniform vec3 baseColour1;
 uniform vec3 baseColour2;
-uniform float baseColourMixRatio;
-
-//uniform vec3 midColour;
-//uniform float midColourMixRatio;
-
-//uniform vec3 endColour;
-//uniform float endColourMixRatio;
-
+uniform float gradientIntensity;
+uniform vec3 colourGradient1;
+uniform vec3 colourGradient2;
 in float colDifRatio;
-float DiffuseCool = 0.3;
-float DiffuseWarm = 0.3;
-vec3 Cool = vec3(0, 0, 0.6);
-vec3 Warm = vec3(0.6, 0, 0);
 
 float randomNumber (in vec2 plot)
 {
@@ -77,13 +68,12 @@ void main()
 
 	float f = fractalBrownianMotion(coordRatio + g);
 
-	vec3 kcool = min(Cool + DiffuseCool, 1.0);
-	vec3 kwarm = min(Warm + DiffuseWarm, 1.0);
-	vec3 kfinal = mix(kcool, kwarm, 0.5f);
+	vec3 grad1 = min(colourGradient1 + gradientIntensity, 1.0);
+	vec3 grad2 = min(colourGradient2 + gradientIntensity, 1.0);
 
 	colour = mix(baseColour1, baseColour2, clamp((f*f)*4.0, 0, 1));
-	colour = mix(colour, kcool, clamp(length(h), 0, 1));
-	colour = mix(colour, kwarm, clamp(colDifRatio, 0, 1));
+	colour = mix(colour, grad1, clamp(colDifRatio, 0, 1));
+	colour = mix(colour, grad2, clamp(colDifRatio, 0, 1));
 
 	gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*colour,1.0);
 }

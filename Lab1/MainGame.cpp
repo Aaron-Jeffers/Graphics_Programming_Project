@@ -202,11 +202,12 @@ void MainGame::linkCombi(Transform transform)
 	combiShader.setMat4("projection", myCamera.getProjection());
 	combiShader.setMat4("view", myCamera.getView());
 	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel()))));
+	combiShader.setVec3("gradientAxis", glm::vec3(0,0,1));
 
 	combiShader.setVec2("resolution", glm::vec2(512, 512));
 	combiShader.setFloat("timeStep", counter/6);
 
-	combiShader.setInt("octaves", 17);
+	combiShader.setInt("octaves", 10);
 	combiShader.setFloat("amplitude", 0.5f);
 	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
 	combiShader.setFloat("axialRotation", 0.5f);
@@ -214,7 +215,10 @@ void MainGame::linkCombi(Transform transform)
 
 	combiShader.setVec3("baseColour1", glm::vec3(0.1,0.66,0.66));
 	combiShader.setVec3("baseColour2", glm::vec3(0.66, 0.66, 0.5));
-	combiShader.setFloat("baseColourMixRatio", 0.5f);
+
+	combiShader.setFloat("gradientIntensity", 0.4f);
+	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.0, 0.8));
+	combiShader.setVec3("colourGradient2", glm::vec3(0.6, 0.0, 0.0));
 
 	//combiShader.setVec3("midColour", glm::vec3(0.0, 0.7, 0.15));
 	//combiShader.setFloat("midColourMixRatio", 0.5f);
