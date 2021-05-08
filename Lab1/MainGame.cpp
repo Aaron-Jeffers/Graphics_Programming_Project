@@ -35,7 +35,7 @@ void MainGame::initSystems()
 	environmentMesh.loadModel(sphereSmooth);
 	goochMesh.loadModel(torusSmooth);
 	fractalMesh.loadModel(sphereSmooth);
-	combiMesh.loadModel(sphereSmooth);
+	combiMesh.loadModel(sphereSuperSmooth);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -136,6 +136,8 @@ void MainGame::processInput()
 	{
 		myCamera.Pitch(-camRotVel);
 	}
+
+	
 }
 
 void MainGame::linkFogShader()
@@ -186,7 +188,7 @@ void MainGame::linkGooch(Transform transform)
 
 void MainGame::linkFractal(Transform transform)
 {
-	fractalShader.setVec2("u_resolution", glm::vec2(1024, 1024));
+	fractalShader.setVec2("u_resolution", glm::vec2(2000, 2000));
 	fractalShader.setFloat("u_time", counter);
 
 	fractalShader.setMat4("model", transform.GetModel());
@@ -196,7 +198,29 @@ void MainGame::linkFractal(Transform transform)
 
 void MainGame::linkCombi(Transform transform)
 {
+	combiShader.setMat4("model", transform.GetModel());
+	combiShader.setMat4("projection", myCamera.getProjection());
+	combiShader.setMat4("view", myCamera.getView());
+	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel()))));
 
+	combiShader.setVec2("resolution", glm::vec2(512, 512));
+	combiShader.setFloat("timeStep", counter/6);
+
+	combiShader.setInt("octaves", 17);
+	combiShader.setFloat("amplitude", 0.5f);
+	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
+	combiShader.setFloat("axialRotation", 0.5f);
+	combiShader.setInt("levelOfDetail", 4);
+
+	combiShader.setVec3("baseColour1", glm::vec3(0.1,0.66,0.66));
+	combiShader.setVec3("baseColour2", glm::vec3(0.66, 0.66, 0.5));
+	combiShader.setFloat("baseColourMixRatio", 0.5f);
+
+	//combiShader.setVec3("midColour", glm::vec3(0.0, 0.7, 0.15));
+	//combiShader.setFloat("midColourMixRatio", 0.5f);
+
+	//combiShader.setVec3("endColour", glm::vec3(0.66, 1, 1));
+	//combiShader.setFloat("endColourMixRatio", 0.5f);
 }
 
 void MainGame::drawGame()
@@ -229,11 +253,11 @@ void MainGame::drawGame()
 	fractalShader.Update(fractalTransform, myCamera);
 	fractalMesh.draw();
 
-	/*combiTransform.SetTransform(glm::vec3(-20.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	combiTransform.SetTransform(glm::vec3(-20.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	combiShader.Bind();
 	linkCombi(combiTransform);
 	combiShader.Update(combiTransform, myCamera);
-	combiMesh.draw();*/
+	combiMesh.draw();
 
 	counter = counter + 0.02f;
 
