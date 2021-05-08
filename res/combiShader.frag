@@ -9,8 +9,8 @@ uniform vec2 offset;
 uniform float axialRotation; //radians
 uniform int levelOfDetail;
 
-uniform vec3 baseColour1;
-uniform vec3 baseColour2;
+//uniform vec3 baseColour1;
+//uniform vec3 baseColour2;
 uniform float gradientIntensity;
 uniform vec3 colourGradient1;
 uniform vec3 colourGradient2;
@@ -71,9 +71,11 @@ void main()
 	vec3 grad1 = min(colourGradient1 + gradientIntensity, 1.0);
 	vec3 grad2 = min(colourGradient2 + gradientIntensity, 1.0);
 
-	colour = mix(baseColour1, baseColour2, clamp((f*f)*4.0, 0, 1));
-	colour = mix(colour, grad1, clamp(colDifRatio, 0, 1));
-	colour = mix(colour, grad2, clamp(colDifRatio, 0, 1));
+	//colour = mix(baseColour1, baseColour2, clamp((f*f)*4.0, 0, 1));
+	//colour = mix(colour, grad1, clamp(colDifRatio, 0, 1));
+	//colour = mix(colour, grad2, clamp(colDifRatio, 0, 1));
+
+	colour = mix(grad1, grad2, clamp((f*f)*4.0 * colDifRatio, 0, 1));
 
 	gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*colour,1.0);
 }
