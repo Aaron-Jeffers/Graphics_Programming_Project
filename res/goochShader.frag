@@ -1,6 +1,5 @@
 #version 330
 
-
 uniform vec3 vColor;
 
 float DiffuseCool = 0.3;

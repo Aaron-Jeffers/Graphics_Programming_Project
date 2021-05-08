@@ -98,8 +98,12 @@
     <ClInclude Include="transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\res\combiShader.frag" />
+    <None Include="..\res\combiShader.vert" />
     <None Include="..\res\fogShader.frag" />
     <None Include="..\res\fogShader.vert" />
+    <None Include="..\res\fractalShader.frag" />
+    <None Include="..\res\fractalShader.vert" />
     <None Include="..\res\goochShader.frag" />
     <None Include="..\res\goochShader.vert" />
     <None Include="..\res\shader.frag" />

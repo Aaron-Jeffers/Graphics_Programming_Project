@@ -14,6 +14,7 @@ MainGame::MainGame()
 	Shader rimShader();
 	Shader geoShader();
 	Shader eMapping();
+	Shader fractalShader();
 }
 
 MainGame::~MainGame()
@@ -33,6 +34,8 @@ void MainGame::initSystems()
 	geometryMesh.loadModel(sphereSmooth);
 	environmentMesh.loadModel(sphereSmooth);
 	goochMesh.loadModel(torusSmooth);
+	fractalMesh.loadModel(sphereSmooth);
+	combiMesh.loadModel(sphereSmooth);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -40,11 +43,11 @@ void MainGame::initSystems()
 	rimShader.init("..\\res\\shaderRim.vert", "..\\res\\shaderRim.frag");
 	eMapping.init("..\\res\\shaderReflection.vert", "..\\res\\shaderReflection.frag");
 	goochShader.init("..\\res\\goochShader.vert", "..\\res\\goochShader.frag");
+	fractalShader.init("..\\res\\fractalShader.vert", "..\\res\\fractalShader.frag");
+	combiShader.init("..\\res\\combiShader.vert","..\\res\\combiShader.frag");
 	geoShader.initGeo();
 	
 	myCamera.initCamera(glm::vec3(0, 0, 10), 90.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
-
-	counter = 1.0f;
 
 	vector<std::string> faces
 	{
@@ -174,11 +177,26 @@ void MainGame::linkEmapping(Transform transform)
 
 void MainGame::linkGooch(Transform transform)
 {
-	goochShader.setMat4("modelToCamera", transform.GetModel());
-	goochShader.setMat4("modelToScreen", myCamera.getProjection());
-	goochShader.setMat3("normalToCamera", glm::mat3((inverse(transform.GetModel()))));
+	goochShader.setMat4("model", transform.GetModel());
+	goochShader.setMat4("projection", myCamera.getProjection());
+	goochShader.setMat3("normal", glm::mat3((inverse(transform.GetModel()))));
 	goochShader.setMat4("view", myCamera.getView());
 	goochShader.setVec3("vColor", glm::vec3(1.0, 1.0, 1.0));
+}
+
+void MainGame::linkFractal(Transform transform)
+{
+	fractalShader.setVec2("u_resolution", glm::vec2(1024, 1024));
+	fractalShader.setFloat("u_time", counter);
+
+	fractalShader.setMat4("model", transform.GetModel());
+	fractalShader.setMat4("projection", myCamera.getProjection());
+	fractalShader.setMat4("view", myCamera.getView());
+}
+
+void MainGame::linkCombi(Transform transform)
+{
+
 }
 
 void MainGame::drawGame()
@@ -187,23 +205,35 @@ void MainGame::drawGame()
 
 	Texture texture(badCompanySmileyITriedToMakeInPaint); //load texture 
 
-	geoTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, -90.0 * deg2rad, 0.0), glm::vec3(2, 2, 2));
+	geoTransform.SetTransform(glm::vec3(20.0, 0.0, 0.0), glm::vec3(0.0, -90.0 * deg2rad, 0.0), glm::vec3(2, 2, 2));
 	geoShader.Bind();
 	linkGeo();
 	geoShader.Update(geoTransform, myCamera);
 	geometryMesh.draw();
 
-	eTransform.SetTransform(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	eTransform.SetTransform(glm::vec3(10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	eMapping.Bind();
 	linkEmapping(eTransform);
 	eMapping.Update(eTransform, myCamera);
 	environmentMesh.draw();
 
-	goochTransform.SetTransform(glm::vec3(-10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	goochTransform.SetTransform(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
 	goochShader.Bind();
 	linkGooch(goochTransform);
 	goochShader.Update(goochTransform, myCamera);
 	goochMesh.draw();
+
+	fractalTransform.SetTransform(glm::vec3(-10.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	fractalShader.Bind();
+	linkFractal(fractalTransform);
+	fractalShader.Update(fractalTransform, myCamera);
+	fractalMesh.draw();
+
+	/*combiTransform.SetTransform(glm::vec3(-20.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(2, 2, 2));
+	combiShader.Bind();
+	linkCombi(combiTransform);
+	combiShader.Update(combiTransform, myCamera);
+	combiMesh.draw();*/
 
 	counter = counter + 0.02f;
 
