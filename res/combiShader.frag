@@ -88,6 +88,5 @@ void main()
 
 	//colour = mix(colour,mix(grad1, grad2, clamp((f*f)*4.0 * colDifRatio, 0, 1)),1.5f);
 
-
 	FragColor = vec4((f*f*f+.6*f*f+.5*f)*colour,1.0);
 }

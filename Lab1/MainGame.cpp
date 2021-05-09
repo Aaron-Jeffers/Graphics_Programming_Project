@@ -185,7 +185,7 @@ void MainGame::linkCombi(Transform transform)
 	combiShader.setInt("octaves", 10);
 	combiShader.setFloat("amplitude", 0.5f);
 	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
-	combiShader.setFloat("axialRotation", 0.0f);
+	combiShader.setFloat("axialRotation", 0.5f);
 	combiShader.setInt("levelOfDetail", 4);
 
 	//combiShader.setVec3("baseColour1", glm::vec3(0.1,0.1,0.66));
