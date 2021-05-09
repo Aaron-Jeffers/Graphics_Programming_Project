@@ -32,7 +32,7 @@ void MainGame::initSystems()
 	_gameDisplay.initDisplay(); 
 	
 	geometryMesh.loadModel(sphereSuperSmooth);
-	environmentMesh.loadModel(sphereSuperSmooth);
+	environmentMesh.loadModel(orbSuperSmooth);
 	combiMesh.loadModel(sphereSuperSmooth);
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
@@ -203,19 +203,19 @@ void MainGame::drawGame()
 
 	Texture texture(badCompanySmileyITriedToMakeInPaint); //load texture 
 
-	geoTransform.SetTransform(glm::vec3(100.0, 0.0, 0.0), glm::vec3(0.0, -90.0 * deg2rad, 0.0), glm::vec3(20, 20, 20));
+	geoTransform.SetTransform(glm::vec3(150.0, 0.0, 0.0), glm::vec3(0.0, -90.0 * deg2rad, 0.0), glm::vec3(20, 20, 20));
 	geoShader.Bind();
 	linkGeo();
 	geoShader.Update(geoTransform, myCamera);
 	geometryMesh.draw();
 
-	eTransform.SetTransform(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(20, 20, 20));
+	eTransform.SetTransform(glm::vec3(-12.5, -11.33, 3.33), glm::vec3(0.0, 0.0, 0.0), glm::vec3(12.5, 12.5, 12.5));
 	eMapping.Bind();
 	linkEmapping(eTransform);
 	eMapping.Update(eTransform, myCamera);
 	environmentMesh.draw();
 
-	combiTransform.SetTransform(glm::vec3(-100.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(20, 20, 20));
+	combiTransform.SetTransform(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 0.0), glm::vec3(20, 20, 20));
 	combiShader.Bind();
 	linkCombi(combiTransform);
 	combiShader.Update(combiTransform, myCamera);
