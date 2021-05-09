@@ -188,9 +188,6 @@ void MainGame::linkCombi(Transform transform)
 	combiShader.setFloat("axialRotation", 0.5f);
 	combiShader.setInt("levelOfDetail", 4);
 
-	//combiShader.setVec3("baseColour1", glm::vec3(0.1,0.1,0.66));
-	//combiShader.setVec3("baseColour2", glm::vec3(0.66, 0.66, 0.5));
-
 	combiShader.setFloat("gradientIntensity", 0.4f);
 	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.8, 1.0));
 	combiShader.setVec3("colourGradient2", glm::vec3(1.0, 0.15, 0.0));
@@ -209,7 +206,7 @@ void MainGame::drawGame()
 	geoShader.Update(geoTransform, myCamera);
 	geometryMesh.draw();
 
-	eTransform.SetTransform(glm::vec3(-12.5, -11.33, 3.33), glm::vec3(0.0, 0.0, 0.0), glm::vec3(12.5, 12.5, 12.5));
+	eTransform.SetTransform(glm::vec3(0,0, 0), glm::vec3(0.0, counter/2.5, 0.0), glm::vec3(11.7, 11.7, 11.7));
 	eMapping.Bind();
 	linkEmapping(eTransform);
 	eMapping.Update(eTransform, myCamera);
