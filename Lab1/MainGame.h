@@ -49,6 +49,7 @@ private:
 	string torus = "..\\res\\torus.obj";
 	string torusSmooth = "..\\res\\torusSmooth.obj";
 	string torusSuperSmooth = "..\\res\\torusSuperSmooth.obj";
+	string orb = "..\\res\\orb.obj";
 
 	//Textures
 	string bricks = "..\\res\\bricks.jpg";
