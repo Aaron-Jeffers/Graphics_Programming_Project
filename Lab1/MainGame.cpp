@@ -31,9 +31,9 @@ void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
 	
-	geometryMesh.loadModel(sphereSmooth); //sphereSmooth
-	environmentMesh.loadModel(orbSuperSmooth); // orbSuperSmooth
-	combiMesh.loadModel(sphereSuperSmooth); //sphereSuperSmooth
+	geometryMesh.loadModel(sphere); //sphereSmooth
+	environmentMesh.loadModel(orb); // orbSuperSmooth
+	combiMesh.loadModel(sphere); //sphereSuperSmooth
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -173,20 +173,19 @@ void MainGame::linkEmapping(Transform transform)
 
 void MainGame::linkCombi(Transform transform)
 {
-	combiShader.setMat4("model", transform.GetModel());
-	combiShader.setMat4("projection", myCamera.getProjection());
-	combiShader.setMat4("view", myCamera.getView());
-	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel()))));
-	combiShader.setVec3("gradientAxis", normalize(glm::vec3(sin(counter),cos(counter),-sin(counter))));
+	combiShader.setMat4("model", transform.GetModel());   //Transform off the model
+	combiShader.setMat4("viewProjection", myCamera.getViewProjection());  //Camera view projection
+	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel())))); //Normal of the model
+	combiShader.setVec3("gradientAxis", normalize(glm::vec3(sin(counter),cos(counter),-sin(counter)))); //Vector relative to model along which the colour gradient occurs
 
 	combiShader.setVec2("resolution", glm::vec2(512, 512));
 	combiShader.setFloat("timeStep", counter/6);
 
 	combiShader.setInt("octaves", 10);
-	combiShader.setFloat("amplitude", 0.5f);
+	combiShader.setFloat("amplitude", 0.53f);
 	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
-	combiShader.setFloat("axialRotation", 0.5f);
-	combiShader.setInt("levelOfDetail", 4);
+	combiShader.setFloat("axialRotation", 0 * deg2rad);
+	combiShader.setInt("lacunarity", 4);
 
 	combiShader.setFloat("brightness", 0.3f);
 	combiShader.setFloat("gradientIntensity", 0.4f);

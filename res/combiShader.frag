@@ -7,7 +7,7 @@ uniform int octaves;
 uniform float amplitude;
 uniform vec2 offset;
 uniform float axialRotation; //radians
-uniform int levelOfDetail;
+uniform int lacunarity;
 
 uniform float brightness;
 uniform float gradientIntensity;
@@ -44,12 +44,12 @@ float fractalBrownianMotion (in vec2 plot)
 {
 	float fractal;
 	float amp = amplitude;
-	mat2 rot = mat2(cos(axialRotation), sin(axialRotation), -sin(axialRotation), cos(axialRotation));
+	mat2 textureRotation = mat2(cos(axialRotation), sin(axialRotation), -sin(axialRotation), cos(axialRotation));
 
 	for (int i = 0; i < octaves; i++)
 	{
 		fractal += amp * noise(plot);
-		plot = rot * plot * 2.0 + offset;
+		plot = textureRotation * plot * 2.0 + offset;
 		amp *= amplitude;
 	}
 
@@ -57,25 +57,29 @@ float fractalBrownianMotion (in vec2 plot)
 }
 
 void main()
-{
-	
-	vec2 coordRatio = gl_FragCoord.xy / resolution.xy * levelOfDetail;
+{	
+	vec2 coordRatio = (gl_FragCoord.xy / resolution.xy) * lacunarity;
 	vec3 colour = vec3(brightness,brightness,brightness);
 
-	vec2 g,h;
+	vec2 g,h,i;
 
 	h.x = fractalBrownianMotion(coordRatio + vec2(1.0, 2.7) * timeStep);
 	h.y = fractalBrownianMotion(coordRatio + vec2(0.3, 4.3) * timeStep);
 
-	g.x = fractalBrownianMotion(coordRatio + h + vec2(9.2, 3.4) * 0.12 * timeStep);
-	g.y = fractalBrownianMotion(coordRatio + h + vec2(1.3, 13.4) * 0.17 * timeStep);
+	g.x = fractalBrownianMotion(coordRatio + h + vec2(9.2, 3.4) * 0.42 * timeStep);
+	g.y = fractalBrownianMotion(coordRatio + h + vec2(1.3, 13.4) * 0.37 * timeStep);
 
-	float f = fractalBrownianMotion(coordRatio + g);
+	i.x = fractalBrownianMotion(coordRatio + g + vec2(1.2, 8.4) * 0.14 * timeStep);
+	i.y = fractalBrownianMotion(coordRatio + g + vec2(12.3, 5.4) * 0.01 * timeStep);
+
+	float f = fractalBrownianMotion(coordRatio + i);
 
 	vec3 grad1 = min(colourGradient1 + gradientIntensity, 1.0);
 	vec3 grad2 = min(colourGradient2 + gradientIntensity, 1.0);
 
 	colour += mix(grad1, grad2, clamp((f*f)* 4.0 * data.colDifRatio, 0, 1)); //before was just colour = mix() and also vec3 colour was set to anything.
 
-	FragColor = vec4((f*f*f+.6*f*f+.5*f+0.3*0.5f*+0.2*f*0.25)*colour,1.0);
+	float fFinal = (pow(f,3) * 0.8) + (pow(f,2) * 0.6) + (pow(f,1) * 0.4) + (pow(f,0.5) * 0.2);
+
+	FragColor = vec4(fFinal*colour,1.0);
 }
