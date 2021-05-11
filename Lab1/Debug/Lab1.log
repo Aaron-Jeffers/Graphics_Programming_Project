@@ -1,6 +1,6 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   MainGame.cpp
-C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.h(65,16): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.h(66,16): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(14,9): warning C4930: 'Shader rimShader(void)': prototyped function not called (was a variable definition intended?)
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(17,9): warning C4930: 'Shader combiShader(void)': prototyped function not called (was a variable definition intended?)
 C:\Users\Aaron\Desktop\University\Third Year\Graphics Programming\Graphics_Programming_Project\Lab1\MainGame.cpp(15,9): warning C4930: 'Shader geoShader(void)': prototyped function not called (was a variable definition intended?)

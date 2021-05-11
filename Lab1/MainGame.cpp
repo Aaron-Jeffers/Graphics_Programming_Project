@@ -31,9 +31,9 @@ void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
 	
-	geometryMesh.loadModel(sphereSuperSmooth);
-	environmentMesh.loadModel(orbSuperSmooth);
-	combiMesh.loadModel(sphereSuperSmooth);
+	geometryMesh.loadModel(sphereSmooth); //sphereSmooth
+	environmentMesh.loadModel(orbSuperSmooth); // orbSuperSmooth
+	combiMesh.loadModel(sphereSuperSmooth); //sphereSuperSmooth
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
@@ -188,6 +188,7 @@ void MainGame::linkCombi(Transform transform)
 	combiShader.setFloat("axialRotation", 0.5f);
 	combiShader.setInt("levelOfDetail", 4);
 
+	combiShader.setFloat("brightness", 0.3f);
 	combiShader.setFloat("gradientIntensity", 0.4f);
 	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.8, 1.0));
 	combiShader.setVec3("colourGradient2", glm::vec3(1.0, 0.15, 0.0));

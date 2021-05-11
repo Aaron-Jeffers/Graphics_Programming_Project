@@ -52,6 +52,7 @@ private:
 	string orb = "..\\res\\orb.obj";
 	string orbSmooth = "..\\res\\orbSmooth.obj";
 	string orbSuperSmooth = "..\\res\\orbSuperSmooth.obj";
+	string icosphere = "..\\res\\icosphere.obj";
 
 	//Textures
 	string bricks = "..\\res\\bricks.jpg";
