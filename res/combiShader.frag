@@ -3,10 +3,10 @@
 uniform vec2 resolution; //Resolution of the texture, higher the number effectively 'zooms in on the shaders'
 uniform float timeStep;  //Variable to keep track of time
 
-uniform int octaves;   //Octaves, used to determine level of detail of wave in noise function
+uniform int octaves;   //Number of octaves, used to determine level of detail of wave in noise function
 uniform float amplitude; //Determines the amplitude of the the noise output
 uniform vec2 offset;  //Offset of the 'texture', if zoomed in with a higher resolution can give the illusion the texture is changing over time
-uniform float axialRotation; //Adds a rotation to the direction in which colour/noise is applied
+uniform float axialRotation; //Adds a rotation to the direction in which colour/noise is applied, removes axial bias
 uniform int lacunarity;  //Lacunarity value of the noise function
 
 uniform float brightness;  //Initial colour value or in this case brightness

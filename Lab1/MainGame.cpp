@@ -173,24 +173,24 @@ void MainGame::linkEmapping(Transform transform)
 
 void MainGame::linkCombi(Transform transform)
 {
-	combiShader.setMat4("model", transform.GetModel());   //Transform off the model
+	combiShader.setMat4("model", transform.GetModel());   //Transform of the model
 	combiShader.setMat4("viewProjection", myCamera.getViewProjection());  //Camera view projection
 	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel())))); //Normal of the model
 	combiShader.setVec3("gradientAxis", normalize(glm::vec3(sin(counter),cos(counter),-sin(counter)))); //Vector relative to model along which the colour gradient occurs
 
-	combiShader.setVec2("resolution", glm::vec2(400, 400));
-	combiShader.setFloat("timeStep", counter/6);
+	combiShader.setVec2("resolution", glm::vec2(400, 400)); //Resolution of the texture, higher the number effectively 'zooms in on the shaders'
+	combiShader.setFloat("timeStep", counter/6);  //Variable to keep track of time
 
-	combiShader.setInt("octaves", 10);
-	combiShader.setFloat("amplitude", 0.53f);
-	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
-	combiShader.setFloat("axialRotation", 90 * deg2rad);
-	combiShader.setInt("lacunarity", 5);
+	combiShader.setInt("octaves", 10); //Number of octaves, used to determine level of detail of wave in noise function
+	combiShader.setFloat("amplitude", 0.53f); //Determines the amplitude of the the noise output
+	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));  //Offset of the 'texture', if zoomed in with a higher resolution can give the illusion the texture is changing over time
+	combiShader.setFloat("axialRotation", 90 * deg2rad); //Adds a rotation to the direction in which colour/noise is applied, removes axial bias
+	combiShader.setInt("lacunarity", 5); //Lacunarity value of the noise function
 
-	combiShader.setFloat("brightness", 0.1f);
-	combiShader.setFloat("gradientIntensity", 0.4f);
-	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.8, 1.0));
-	combiShader.setVec3("colourGradient2", glm::vec3(1.0, 0.15, 0.0));
+	combiShader.setFloat("brightness", 0.1f); //Initial colour value or in this case brightness
+	combiShader.setFloat("gradientIntensity", 0.4f); //Applies stauration to one or both colour gradients before they are mixed 
+	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.8, 1.0)); //First colour to be mixed
+	combiShader.setVec3("colourGradient2", glm::vec3(1.0, 0.15, 0.0)); //Second colour to be mixed
 	//combiShader.setVec3("colourGradient3", glm::vec3(1.0, 0.0, 1.0));
 }
 
