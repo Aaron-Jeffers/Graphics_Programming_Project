@@ -30,10 +30,10 @@ void MainGame::run()
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
-	
-	geometryMesh.loadModel(sphere); //sphereSmooth
-	environmentMesh.loadModel(orb); // orbSuperSmooth
-	combiMesh.loadModel(sphere); //sphereSuperSmooth
+	                                 //Below: Different model quality options:
+	geometryMesh.loadModel(sphere);  //sphere, sphereSmooth, sphereSuperSmooth
+	environmentMesh.loadModel(orb);  //orb, orbSmooth, orbSuperSmooth
+	combiMesh.loadModel(sphere);     //sphere, sphereSmooth, sphereSuperSmooth
 
 	shader.init("..\\res\\shader.vert", "..\\res\\shader.frag");
 	fogShader.init("..\\res\\fogShader.vert", "..\\res\\fogShader.frag"); 
