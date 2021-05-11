@@ -178,16 +178,16 @@ void MainGame::linkCombi(Transform transform)
 	combiShader.setMat3("normal", glm::mat3((inverse(transform.GetModel())))); //Normal of the model
 	combiShader.setVec3("gradientAxis", normalize(glm::vec3(sin(counter),cos(counter),-sin(counter)))); //Vector relative to model along which the colour gradient occurs
 
-	combiShader.setVec2("resolution", glm::vec2(512, 512));
+	combiShader.setVec2("resolution", glm::vec2(400, 400));
 	combiShader.setFloat("timeStep", counter/6);
 
 	combiShader.setInt("octaves", 10);
 	combiShader.setFloat("amplitude", 0.53f);
 	combiShader.setVec2("offset", glm::vec2(counter , sin(counter * deg2rad)));
-	combiShader.setFloat("axialRotation", 0 * deg2rad);
-	combiShader.setInt("lacunarity", 4);
+	combiShader.setFloat("axialRotation", 90 * deg2rad);
+	combiShader.setInt("lacunarity", 5);
 
-	combiShader.setFloat("brightness", 0.3f);
+	combiShader.setFloat("brightness", 0.1f);
 	combiShader.setFloat("gradientIntensity", 0.4f);
 	combiShader.setVec3("colourGradient1", glm::vec3(0.0, 0.8, 1.0));
 	combiShader.setVec3("colourGradient2", glm::vec3(1.0, 0.15, 0.0));
