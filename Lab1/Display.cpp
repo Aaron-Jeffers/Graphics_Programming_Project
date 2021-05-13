@@ -3,14 +3,14 @@
 
 Display::Display()
 {
-	//sdlWindow = nullptr; //initialise to generate null access violation for debugging. 
-	//screenWidth = 2240.0f;
-	//screenHeight = 1260.0f; 
-
 	sdlWindow = nullptr; //initialise to generate null access violation for debugging. 
-	HWND h = GetDesktopWindow(); //Gets resolution of desktop  //////Note only tested on windows, not mac or linux////////
-	RECT r; //Reference to desktop window points
-	GetClientRect(h, &r);
+	screenWidth = 2240.0f;
+	screenHeight = 1260.0f; 
+
+	//sdlWindow = nullptr; //initialise to generate null access violation for debugging. 
+	//HWND h = GetDesktopWindow(); //Gets resolution of desktop  //////Note only tested on windows, not mac or linux////////
+	//RECT r; //Reference to desktop window points
+	//GetClientRect(h, &r);
 
 	screenWidth = r.right - r.left; //Sets window width equal to that of client's desktop width
 	screenHeight = r.bottom - r.top; //Sets window width equal to that of client's desktop height
